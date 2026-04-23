@@ -1,0 +1,107 @@
+﻿<Page x:Class="CompStore.Pages.AuthorizationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="AuthorizationPage"
+      Background="{StaticResource AppBackgroundBrush}">
+
+    <Grid Margin="30">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.95*"/>
+            <ColumnDefinition Width="1.05*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Border Style="{StaticResource CardBorderStyle}"
+                    Width="420"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <StackPanel>
+                    <TextBlock Text="CompStore"
+                               Style="{StaticResource PageTitleStyle}"
+                               HorizontalAlignment="Center"/>
+
+                    <TextBlock Text="Вход в систему"
+                               Style="{StaticResource MutedTextStyle}"
+                               HorizontalAlignment="Center"
+                               Margin="0,8,0,24"/>
+
+                    <TextBlock Text="Логин"
+                               Foreground="{StaticResource TextMainBrush}"/>
+                    <TextBox x:Name="txtLogin"
+                             Style="{StaticResource MainTextBoxStyle}"
+                             MaxLength="50"/>
+
+                    <TextBlock Text="Пароль"
+                               Foreground="{StaticResource TextMainBrush}"/>
+                    <PasswordBox x:Name="txtPassword"
+                                 Style="{StaticResource MainPasswordBoxStyle}"
+                                 MaxLength="50"/>
+
+                    <Button x:Name="btnLogin"
+                            Content="Войти"
+                            Style="{StaticResource MainButtonStyle}"
+                            Margin="0,10,0,8"
+                            Click="btnLogin_Click"/>
+
+                    <Button x:Name="btnReg"
+                            Content="Регистрация"
+                            Style="{StaticResource GhostButtonStyle}"
+                            Click="btnReg_Click"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Border Style="{StaticResource CardBorderStyle}"
+                    Margin="20,40,0,40">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="140"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel VerticalAlignment="Center" Margin="30">
+                        <TextBlock Text="Компьютеры и комплектующие"
+                                   FontSize="40"
+                                   FontWeight="Bold"
+                                   Foreground="{StaticResource TextMainBrush}"
+                                   TextWrapping="Wrap"/>
+
+                        <TextBlock Text="Выбирайте игровые ПК, процессоры, видеокарты, SSD и периферию в одном каталоге."
+                                   FontSize="18"
+                                   Foreground="{StaticResource TextMutedBrush}"
+                                   Margin="0,18,0,0"
+                                   TextWrapping="Wrap"/>
+                    </StackPanel>
+
+                    <UniformGrid Grid.Row="1" Columns="3" Margin="20">
+                        <Border Background="#F4F1FF" CornerRadius="18" Margin="8">
+                            <TextBlock Text="GPU"
+                                       Foreground="{StaticResource AccentBrush}"
+                                       FontSize="22"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Background="#EEF2FF" CornerRadius="18" Margin="8">
+                            <TextBlock Text="CPU"
+                                       Foreground="#4F46E5"
+                                       FontSize="22"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+                        <Border Background="#FAF5FF" CornerRadius="18" Margin="8">
+                            <TextBlock Text="SSD"
+                                       Foreground="#9333EA"
+                                       FontSize="22"
+                                       FontWeight="Bold"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"/>
+                        </Border>
+                    </UniformGrid>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

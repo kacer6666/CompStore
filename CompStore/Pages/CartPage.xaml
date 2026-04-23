@@ -1,0 +1,168 @@
+﻿<Page x:Class="CompStore.Pages.CartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="CartPage"
+      Background="{StaticResource AppBackgroundBrush}">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="140"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Корзина"
+                       Style="{StaticResource PageTitleStyle}"
+                       VerticalAlignment="Center"/>
+
+            <Button Grid.Column="1"
+                    x:Name="btnBack"
+                    Content="Назад"
+                    Width="100"
+                    Style="{StaticResource GhostButtonStyle}"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Click="btnBack_Click"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="330"/>
+            </Grid.ColumnDefinitions>
+
+            <ListView x:Name="lvCartItems"
+                      Grid.Column="0"
+                      Background="Transparent"
+                      BorderThickness="0"
+                      Margin="0,0,16,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardBorderStyle}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="110"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="110"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0"
+                                        Background="#F8FAFF"
+                                        BorderBrush="{StaticResource BorderBrushSoft}"
+                                        BorderThickness="1"
+                                        CornerRadius="16"
+                                        Margin="0,0,12,0">
+                                    <Image Source="{Binding ImagePath}"
+                                           Width="82"
+                                           Height="82"
+                                           Stretch="Uniform"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                                </Border>
+
+                                <StackPanel Grid.Column="1"
+                                            VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding ProductName}"
+                                               Foreground="{StaticResource TextMainBrush}"
+                                               FontSize="18"
+                                               FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Model, StringFormat=Модель: {0}}"
+                                               Foreground="{StaticResource TextMutedBrush}"
+                                               Margin="0,6,0,0"/>
+                                    <TextBlock Text="{Binding PriceAtMoment, StringFormat=Цена: {0} ₽}"
+                                               Foreground="{StaticResource AccentBrush}"
+                                               Margin="0,6,0,0"
+                                               FontWeight="SemiBold"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+                                    <TextBlock Text="Количество"
+                                               Foreground="{StaticResource TextMutedBrush}"
+                                               HorizontalAlignment="Center"
+                                               Margin="0,0,0,8"/>
+                                    <StackPanel Orientation="Horizontal"
+                                                HorizontalAlignment="Center">
+                                        <Button Content="-"
+                                                Width="32"
+                                                Tag="{Binding}"
+                                                Style="{StaticResource GhostButtonStyle}"
+                                                Click="btnMinus_Click"/>
+
+                                        <TextBlock Text="{Binding Quantity}"
+                                                   Width="36"
+                                                   TextAlignment="Center"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="{StaticResource TextMainBrush}"
+                                                   FontWeight="Bold"/>
+
+                                        <Button Content="+"
+                                                Width="32"
+                                                Tag="{Binding}"
+                                                Style="{StaticResource GhostButtonStyle}"
+                                                Click="btnPlus_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="3"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center">
+                                    <TextBlock Text="{Binding TotalPrice, StringFormat={}{0} ₽}"
+                                               Foreground="{StaticResource TextMainBrush}"
+                                               FontWeight="Bold"
+                                               HorizontalAlignment="Center"/>
+                                    <Button Content="Удалить"
+                                            Width="84"
+                                            Tag="{Binding}"
+                                            Margin="0,10,0,0"
+                                            Style="{StaticResource DangerButtonStyle}"
+                                            Click="btnDelete_Click"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Border Grid.Column="1"
+                    Style="{StaticResource CardBorderStyle}">
+                <StackPanel>
+                    <TextBlock Text="Итог заказа"
+                               Foreground="{StaticResource TextMainBrush}"
+                               FontSize="24"
+                               FontWeight="Bold"/>
+
+                    <TextBlock x:Name="tbTotal"
+                               Text="Итог: 0 ₽"
+                               Foreground="{StaticResource AccentBrush}"
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Margin="0,18,0,18"/>
+
+                    <TextBlock Text="После оформления будет создан PDF-чек с QR-кодом."
+                               Foreground="{StaticResource TextMutedBrush}"
+                               TextWrapping="Wrap"
+                               Margin="0,0,0,20"/>
+
+                    <Button x:Name="btnOrder"
+                            Content="Оформить заказ"
+                            Style="{StaticResource MainButtonStyle}"
+                            Click="btnOrder_Click"/>
+
+                    <Button x:Name="btnClearCart"
+                            Content="Очистить корзину"
+                            Style="{StaticResource DangerButtonStyle}"
+                            Margin="0,10,0,0"
+                            Click="btnClearCart_Click"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

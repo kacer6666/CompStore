@@ -1,0 +1,119 @@
+﻿<Page x:Class="CompStore.Pages.AdminProductsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="AdminProductsPage"
+      Background="{StaticResource AppBackgroundBrush}">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0"
+                Style="{StaticResource CardBorderStyle}"
+                Padding="18">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Панель администратора"
+                           Style="{StaticResource PageTitleStyle}"
+                           VerticalAlignment="Center"/>
+
+                <Button Grid.Column="1"
+                        x:Name="btnBack"
+                        Content="Назад"
+                        Width="100"
+                        Style="{StaticResource GhostButtonStyle}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Click="btnBack_Click"/>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1"
+                Style="{StaticResource CardBorderStyle}"
+                Margin="0,14,0,14"
+                Padding="14">
+            <WrapPanel>
+                <Button x:Name="btnAdd"
+                        Content="Добавить товар"
+                        Style="{StaticResource MainButtonStyle}"
+                        Click="btnAdd_Click"/>
+
+                <Button x:Name="btnEdit"
+                        Content="Редактировать"
+                        Style="{StaticResource GhostButtonStyle}"
+                        Click="btnEdit_Click"/>
+
+                <Button x:Name="btnDelete"
+                        Content="Удалить"
+                        Style="{StaticResource DangerButtonStyle}"
+                        Click="btnDelete_Click"/>
+
+                <Button x:Name="btnUsers"
+                        Content="Пользователи"
+                        Style="{StaticResource GhostButtonStyle}"
+                        Click="btnUsers_Click"/>
+
+                <Button x:Name="btnOrders"
+                        Content="Заказы"
+                        Style="{StaticResource GhostButtonStyle}"
+                        Click="btnOrders_Click"/>
+            </WrapPanel>
+        </Border>
+
+        <ListView x:Name="lvAdminProducts"
+                  Grid.Row="2"
+                  Background="Transparent"
+                  BorderThickness="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Style="{StaticResource CardBorderStyle}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="120"/>
+                                <ColumnDefinition Width="130"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="{Binding ProductName}"
+                                           Foreground="{StaticResource TextMainBrush}"
+                                           FontSize="18"
+                                           FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Model}"
+                                           Foreground="{StaticResource TextMutedBrush}"
+                                           Margin="0,6,0,0"/>
+                            </StackPanel>
+
+                            <TextBlock Grid.Column="1"
+                                       Text="{Binding Categories.CategoryName}"
+                                       Foreground="{StaticResource TextMainBrush}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="2"
+                                       Text="{Binding Price, StringFormat={}{0} ₽}"
+                                       Foreground="{StaticResource AccentBrush}"
+                                       FontWeight="Bold"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+
+                            <TextBlock Grid.Column="3"
+                                       Text="{Binding QuantityInStock, StringFormat=Остаток: {0}}"
+                                       Foreground="{StaticResource TextMutedBrush}"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

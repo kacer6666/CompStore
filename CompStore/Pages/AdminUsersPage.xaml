@@ -1,0 +1,102 @@
+﻿<Page x:Class="CompStore.Pages.AdminUsersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="AdminUsersPage"
+      Background="{StaticResource AppBackgroundBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0"
+                Background="{StaticResource SurfaceBrush}"
+                BorderBrush="{StaticResource BorderBrushSoft}"
+                BorderThickness="0,0,1,0">
+            <StackPanel Margin="16">
+                <TextBlock Text="Users"
+                           Style="{StaticResource PageTitleStyle}"/>
+
+                <TextBlock Text="Управление пользователями"
+                           Style="{StaticResource MutedTextStyle}"
+                           Margin="0,10,0,22"/>
+
+                <Button x:Name="btnChangeRole"
+                        Content="Сменить роль"
+                        Style="{StaticResource MainButtonStyle}"
+                        Click="btnChangeRole_Click"/>
+
+                <Button x:Name="btnToggleBlock"
+                        Content="Блок / разблок"
+                        Style="{StaticResource DangerButtonStyle}"
+                        Click="btnToggleBlock_Click"/>
+
+                <Button x:Name="btnBack"
+                        Content="Назад"
+                        Style="{StaticResource GhostButtonStyle}"
+                        Margin="0,24,0,0"
+                        Click="btnBack_Click"/>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Список пользователей"
+                       Style="{StaticResource PageTitleStyle}"
+                       VerticalAlignment="Center"/>
+
+            <ListView x:Name="lvUsers"
+                      Grid.Row="1"
+                      Background="Transparent"
+                      BorderThickness="0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource CardBorderStyle}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="140"/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="140"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="{Binding FullName}"
+                                               Foreground="{StaticResource TextMainBrush}"
+                                               FontSize="18"
+                                               FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding Login, StringFormat=Логин: {0}}"
+                                               Foreground="{StaticResource TextMutedBrush}"
+                                               Margin="0,6,0,0"/>
+                                </StackPanel>
+
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding Roles.RoleName}"
+                                           Foreground="{StaticResource TextMainBrush}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+
+                                <TextBlock Grid.Column="2"
+                                           Text="{Binding Email}"
+                                           Foreground="{StaticResource TextMutedBrush}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+
+                                <TextBlock Grid.Column="3"
+                                           Text="{Binding IsBlocked, StringFormat=Заблокирован: {0}}"
+                                           Foreground="{StaticResource TextMainBrush}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>
